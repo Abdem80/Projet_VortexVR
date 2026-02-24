@@ -1,11 +1,14 @@
-<?php 
-include "inc/header.php";
+<?php
+require_once "inc/header.php";
 ?>
 
-<h1 class="center" style="text-align: center;">Entrez votre utilisateur et mot de passe <br> pour accéder aux fonctionnalités</h1>
+<h1 class="center">
+    Entrez votre utilisateur et mot de passe <br>
+    pour accéder aux fonctionnalités
+</h1>
 
 <?php if (!empty($_SESSION['login_error'])): ?>
-    <p style="color: red; text-align: center;">
+    <p class="login-error">
         <?= htmlspecialchars($_SESSION['login_error']) ?>
     </p>
     <?php unset($_SESSION['login_error']); ?>
@@ -17,7 +20,7 @@ include "inc/header.php";
         <input type="text" name="username" id="username" required>
 
         <label for="password">Mot de passe :</label>
-        <input type="password" name="pass" id="pass" required>
+        <input type="password" name="pass" id="password" required>
 
         <input type="hidden" name="action" value="login">
 
@@ -26,5 +29,5 @@ include "inc/header.php";
 </div>
 
 <?php
-include "inc/footer.php";
+require_once "inc/footer.php";
 ?>

@@ -4,7 +4,8 @@
     box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
     height: 100%;
 }
 
@@ -12,8 +13,8 @@ body {
     display: flex;
     flex-direction: column;
     font-family: 'Calibri', sans-serif;
-    background-color: #020617;               
-    color: #e5e7eb;                           
+    background-color: #020617;
+    color: #e5e7eb;
 }
 
 .container {
@@ -24,7 +25,7 @@ body {
 }
 
 .user-info {
-    color: #e5e7eb; 
+    color: #e5e7eb;
     font-weight: 600;
     font-size: 1rem;
     margin-left: 1rem;
@@ -41,13 +42,13 @@ body {
 }
 
 .site-main section {
-    width: 100%; 
+    width: 100%;
 }
 
 
 .site-header {
-    background: rgba(15, 23, 42, 0.95);      
-    border-bottom: 1px solid #1e293b;       
+    background: rgba(15, 23, 42, 0.95);
+    border-bottom: 1px solid #1e293b;
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -75,7 +76,7 @@ img {
 }
 
 .site-title span {
-    color: #6366f1; 
+    color: #6366f1;
 }
 
 
@@ -92,7 +93,7 @@ img {
 }
 
 .main-nav a {
-    color: #9ca3af;             
+    color: #9ca3af;
     text-decoration: none;
     font-size: 1rem;
     padding-bottom: 2px;
@@ -102,7 +103,7 @@ img {
 
 .main-nav a:hover {
     color: #ffffff;
-    border-bottom-color: #6366f1; 
+    border-bottom-color: #6366f1;
 }
 
 .site-footer {
@@ -137,20 +138,21 @@ img {
         height: 50px;
     }
 
-    .product-image-box img{
+    .product-image-box img {
         max-width: 30%;
     }
-    
+
 }
+
 /*Acceuil ou index.php par WILLIAM*/
 
-.acc-offre{
+.acc-offre {
     text-align: center;
     width: 50%;
     margin: 0 auto;
 }
 
-.acc-offre{
+.acc-offre {
     display: flex;
     justify-content: center;
     background-color: red;
@@ -161,12 +163,12 @@ img {
     margin-bottom: 10px;
 }
 
-.acc-whole{
+.acc-whole {
     max-width: 1100px;
     margin: 0 auto;
 }
 
-.acc-titre{
+.acc-titre {
     font-size: larger;
     font-weight: bold;
     margin-bottom: 30px;
@@ -178,18 +180,19 @@ img {
     height: 60px;
 }
 
-.acc-catalogue{
+.acc-catalogue {
     margin-top: 10px;
     text-align: center;
     height: 200px;
 }
 
-.acc-catalogue button{ 
+.acc-catalogue button {
     padding: 5px 10px;
     font-size: large;
 }
 
-.acc-succes, .acc-err{
+.acc-succes,
+.acc-err {
     margin-bottom: 30px;
     text-align: center;
     border: 1px solid #1e293b;
@@ -199,15 +202,15 @@ img {
 
 }
 
-.acc-succes{
-     background-color: green;
+.acc-succes {
+    background-color: green;
 }
 
-.acc-err{
-     background-color: red;
+.acc-err {
+    background-color: red;
 }
 
-.acc-top3{
+.acc-top3 {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -215,7 +218,7 @@ img {
     margin-bottom: 20px;
 }
 
-.acc-produit{
+.acc-produit {
     display: flex;
     flex-direction: column;
     background-color: #0f172a;
@@ -226,7 +229,7 @@ img {
     height: 450px;
 }
 
-.acc-img{
+.acc-img {
     height: 300px;
     display: flex;
     justify-content: center;
@@ -234,29 +237,29 @@ img {
     margin-bottom: 10px;
 }
 
-.acc-img img{
+.acc-img img {
     max-width: 300px;
     border-radius: 6px;
     margin-bottom: 15px;
 }
 
-.acc-info{
+.acc-info {
     margin-bottom: 15px;
 }
 
-.acc-nom{
+.acc-nom {
     display: block;
     font-weight: bold;
     font-size: large;
     margin-bottom: 5px;
 }
 
-.acc-prix{
+.acc-prix {
     display: block;
     font-weight: bold;
 }
 
-.acc-panier button{
+.acc-panier button {
     background-color: #6366f1;
     color: #fff;
     cursor: pointer;
@@ -264,11 +267,12 @@ img {
     border: none;
     border-radius: 6px;
 }
-.acc-panier button:hover{
+
+.acc-panier button:hover {
     background-color: #4f46e5;
 }
 
-.acc-btn-catalogue{
+.acc-btn-catalogue {
     padding: 12px 25px;
     font-size: large;
     font-weight: bold;
@@ -278,30 +282,32 @@ img {
     color: white;
 }
 
-.acc-btn-catalogue:hover{
+.acc-btn-catalogue:hover {
     background-color: #f4c98d;
 }
 
-.acc-switch-casque{
+.acc-switch-casque {
     display: flex;
     justify-content: center;
     margin-top: 10px;
     margin-bottom: 20px;
 }
-.acc-switch-casque button{
+
+.acc-switch-casque button {
     background-color: #6366f1;
     color: white;
     padding: 8px 14px;
     margin: 10px;
 }
+
 /*Creation de casque par WILLIAM*/
 
-.crea-whole{
+.crea-whole {
     max-width: 1100px;
     margin: 0 auto;
 }
 
-.crea-section-titre{
+.crea-section-titre {
     text-align: center;
     background-color: #0f172a;
     border: 1px solid #1e293b;
@@ -313,7 +319,7 @@ img {
     font-weight: bold;
 }
 
-.crea-form{
+.crea-form {
     margin-top: 60px;
     padding: 30px 40px;
     background-color: #0f172a;
@@ -322,17 +328,19 @@ img {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
-    "nom marque"
-    "prix inv"
-    "desc desc"
-    "img img"
-    "cree cree"
+        "nom marque"
+        "prix inv"
+        "desc desc"
+        "img img"
+        "cree cree"
     ;
     gap: 20px 30px;
     justify-items: center;
 }
 
-.crea-form input, .crea-form select, .crea-form textarea{
+.crea-form input,
+.crea-form select,
+.crea-form textarea {
     width: 100%;
     max-width: 300px;
     padding: 10px 12px;
@@ -341,6 +349,7 @@ img {
     background-color: #2d3d55;
     color: white;
 }
+
 .crea-form textarea {
     height: 100%;
     max-height: 400px;
@@ -352,35 +361,41 @@ img {
     font-weight: bold;
 }
 
-.crea-nom{
+.crea-nom {
     grid-area: nom;
     text-align: center;
 }
-.crea-marque{
+
+.crea-marque {
     grid-area: marque;
     text-align: center;
 }
-.crea-prix{
+
+.crea-prix {
     grid-area: prix;
     text-align: center;
 }
-.crea-inv{
+
+.crea-inv {
     grid-area: inv;
     text-align: center;
 }
-.crea-desc{
+
+.crea-desc {
     text-align: center;
     grid-area: desc;
     max-width: 400px;
     width: 100%;
 }
-.crea-img{
+
+.crea-img {
     grid-area: img;
     max-width: 300px;
     width: 100%;
     text-align: center;
 }
-.crea-section-cree{
+
+.crea-section-cree {
     margin-top: 100px;
     grid-area: cree;
     justify-self: center;
@@ -389,27 +404,27 @@ img {
 
 @media (max-width: 768px) {
 
-.crea-form{
-    grid-template-columns: 1fr;
-    grid-template-areas: 
-    "nom"
-    "marque"
-    "prix"
-    "inv"
-    "desc"
-    "img"
-    "cree";
-}
+    .crea-form {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "nom"
+            "marque"
+            "prix"
+            "inv"
+            "desc"
+            "img"
+            "cree";
+    }
 
 }
 
 /*PANIER PAR WILLIAM*/
-.panier{
+.panier {
     max-width: 1100px;
     margin: 0 auto;
 }
 
-.section-produit{
+.section-produit {
     display: grid;
     grid-template-columns: 1fr 1fr;
     max-width: 1100px;
@@ -417,13 +432,13 @@ img {
     justify-items: center;
 }
 
-.section-Total{
+.section-Total {
     display: flex;
     justify-content: center;
     margin-bottom: 30px;
 }
 
-.panier-Total{
+.panier-Total {
     background-color: #0f172a;
     border: 1px solid #1e293b;
     border-radius: 6px;
@@ -433,12 +448,12 @@ img {
     align-content: center;
 }
 
-.section-commande{
+.section-commande {
     display: flex;
     justify-content: center;
 }
 
-.produit{
+.produit {
     margin-left: 10px;
     margin-bottom: 20px;
     width: 85%;
@@ -449,23 +464,25 @@ img {
     padding: 1rem;
     display: grid;
     grid-template-columns: auto 1fr;
-    grid-template-areas: 
-    "box nom"
-    "img img"
-    "desc desc"
-    "prix prix"
-    "qte suppr";
+    grid-template-areas:
+        "box nom"
+        "img img"
+        "desc desc"
+        "prix prix"
+        "qte suppr";
 }
 
-.produit-box{
+.produit-box {
     grid-area: box;
     width: 30px;
 }
-.produit-nom{
+
+.produit-nom {
     grid-area: nom;
-    text-align:center ;
+    text-align: center;
 }
-.produit-img{
+
+.produit-img {
     grid-area: img;
     display: flex;
     justify-content: center;
@@ -473,22 +490,27 @@ img {
     height: 300px;
     width: 430px;
 }
-.produit-img>img{
+
+.produit-img>img {
     width: 300px;
     max-height: 300px;
 }
-.produit-desc{
+
+.produit-desc {
     grid-area: desc;
     text-align: center;
 }
-.produit-prix{
+
+.produit-prix {
     grid-area: prix;
 }
-.produit-suppr{
+
+.produit-suppr {
     grid-area: suppr;
     width: 200px;
 }
-.produit-qte{
+
+.produit-qte {
     grid-area: qte;
     width: 150px;
     display: flex;
@@ -496,12 +518,12 @@ img {
     gap: 2px;
 }
 
-.produit-bold{
+.produit-bold {
     color: white;
     font-weight: bold;
 }
 
-#commandePanier{
+#commandePanier {
     background-color: #f4c98d;
     border: none;
     border-radius: 100px;
@@ -511,38 +533,38 @@ img {
     height: 50px;
 }
 
-#commandePanier:hover{
+#commandePanier:hover {
     background-color: #e0b158;
     transform: scale(105%);
 }
 
 @media (max-width: 768px) {
 
-    .section-produit{
-    grid-template-columns: 1fr;
-    justify-items: center;
+    .section-produit {
+        grid-template-columns: 1fr;
+        justify-items: center;
     }
 
-    .produit{
+    .produit {
         width: 100%;
         border: 1px solid #1e293b;
         border-radius: 6px;
         padding: 1rem;
         grid-template-columns: 1fr 1fr 1fr;
-        grid-template-areas: 
-        "box img nom"
-        ". img desc"
-        "prix qte sppr";
+        grid-template-areas:
+            "box img nom"
+            ". img desc"
+            "prix qte sppr";
     }
 
-    .produit-qte{
-    grid-area: qte;
-    width: 150px;
-    align-items: center;
-    gap: 2px;
+    .produit-qte {
+        grid-area: qte;
+        width: 150px;
+        align-items: center;
+        gap: 2px;
     }
 
-    .produit-nom{
+    .produit-nom {
         width: 100%;
     }
 
@@ -900,6 +922,7 @@ img {
     background-color: #0f172a;
     color: #e5e7eb;
 }
+
 /*mise en page de catalogue.php
 par Sedrick*/
 
@@ -1311,3 +1334,66 @@ par Sedrick*/
 }
 
 /*Fin CSS Alex*/
+
+/* Utilitaire */
+.center {
+    text-align: center;
+}
+
+/* Pour le lien "Se connecter" dans register.php quand il prend la classe btn-submit */
+a.btn-submit {
+    display: inline-block;
+    text-align: center;
+}
+
+/* Utilitaires */
+.center {
+    text-align: center;
+}
+
+.actions {
+    margin: 15px 0;
+}
+
+/* Messages */
+.message-success {
+    color: #a7f3d0;
+}
+
+.message-error {
+    color: #fecaca;
+}
+
+/* Affichage traitement inscription */
+.traitement {
+    max-width: 900px;
+    margin: 18px auto;
+    padding: 14px 18px;
+    border: 1px solid #1e293b;
+    border-radius: 8px;
+    background: rgba(15, 23, 42, 0.6);
+    list-style: none;
+    text-align: left;
+}
+
+.traitement>li {
+    margin-bottom: 14px;
+}
+
+.traitement ul {
+    list-style: disc;
+    padding-left: 22px;
+}
+
+.traitement li li {
+    margin: 4px 0;
+}
+
+.is-hidden {
+    display: none;
+}
+
+/* messages (si tu ne les as pas déjà) */
+.message-error {
+    color: #fecaca;
+}

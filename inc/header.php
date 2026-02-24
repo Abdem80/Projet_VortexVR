@@ -28,25 +28,24 @@ if (session_status() === PHP_SESSION_NONE) {
         <a href="index.php" class="logo-image">
             <img src="images/favicon.png" alt="Logo Vortex VR">
         </a>
-
         <nav class="main-nav">
             <ul>
                 <li><a href="catalogue.php">Catalogue</a></li>
-   <?php if (!empty($_SESSION['nom_utilisateur'])): ?>
-        <li><a href="panier.php">Panier</a></li>
-        <li><a href="creation_casque.php">Créer un casque</a></li>
-        <a href="compte.php">Compte</a>
-        <a href="traitement.php?action=logout">Se déconnecter</a>
-        <li class="user-info">
-            Bienvenu, <?= htmlspecialchars($_SESSION['nom_utilisateur']) ?>
-        </li>
-    <?php else: ?>
-        <a href="register.php">Inscription</a>
-        <a href="login.php">Se connecter</a>
-    <?php endif; ?>
+
+                <?php if (!empty($_SESSION['nom_utilisateur'])): ?>
+                    <li><a href="panier.php">Panier</a></li>
+                    <li><a href="creation_casque.php">Créer un casque</a></li>
+                    <li><a href="compte.php">Compte</a></li>
+                    <li><a href="traitement.php?action=logout">Se déconnecter</a></li>
+                    <li class="user-info">
+                        Bienvenue, <?= htmlspecialchars($_SESSION['nom_utilisateur']) ?>
+                    </li>
+                <?php else: ?>
+                    <li><a href="register.php">Inscription</a></li>
+                    <li><a href="login.php">Se connecter</a></li>
+                <?php endif; ?>
             </ul>
         </nav>
-
     </div>
 </header>
 
