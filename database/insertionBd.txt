@@ -1,0 +1,106 @@
+USE boutique_casques_vr;
+
+-- =========================
+-- 1) UTILISATEURS
+-- =========================
+INSERT INTO utilisateurs (nom_utilisateur, courriel, mot_de_passe) VALUES
+('Abdoulaye', 'abdoulaye@example.com', 'abc@123'),
+('William',   'william@example.com',   'abc@123'),
+('Sedrick',   'sedrick@example.com',   'abc@123'),
+('Alexandre', 'alexandre@example.com', 'abc@123');
+
+-- =========================
+-- 2) MARQUES
+-- =========================
+INSERT INTO marques (nom_marque) VALUES
+('Apple'),
+('Bigscreen'),
+('Pimax'),
+('Meta / Oculus'),
+('Sony PlayStation');
+
+-- =========================
+-- 3) CASQUES
+-- Adaptation de :
+-- Bigscreen Beyond, Pimax 5K Super, Oculus Rift, PSVR, Apple Vision Pro
+-- =========================
+INSERT INTO casques (id_marque, id_createur, nom_casque, prix, stock, description) VALUES
+-- 1 : Bigscreen Beyond (marque Bigscreen, crée par Aboulaye)
+(2, 1, 'Bigscreen Beyond', 1799.99, 5,
+ 'Casque VR ultra-léger conçu pour le PC, lancé en 2023.'),
+
+-- 2 : Pimax 5K Super (marque Pimax, crée par William)
+(3, 2, 'Pimax 5K Super', 1199.99, 8,
+ 'Casque VR grand champ de vision, adapté aux jeux exigeants.'),
+
+-- 3 : Oculus Rift (marque Meta/Oculus, crée par Sedrick)
+(4, 3, 'Oculus Rift', 399.99, 10,
+ 'Casque VR historique lancé en 2016, pensé pour le PC gaming.'),
+
+-- 4 : PSVR (marque Sony PlayStation, crée par Alexandre)
+(5, 4, 'PSVR', 499.99, 6,
+ 'Casque VR pour console PlayStation, compatible PS4.'),
+
+-- 5 : Apple Vision Pro (marque Apple, crée par Aboulaye)
+(1, 1, 'Apple Vision Pro', 3499.00, 3,
+ 'Casque de spatial computing haut de gamme, lancé en 2024.');
+
+-- =========================
+-- 4) PANIERS
+-- 1 panier par utilisateur
+-- =========================
+INSERT INTO paniers (id_utilisateur) VALUES
+(1), 
+(2), 
+(3),  
+(4);  
+
+-- =========================
+--  ARTICLES_PANIER
+-- Panier 1 (user 1) : Apple Vision Pro + Oculus Rift
+-- Panier 2 (user 2) : Bigscreen Beyond + Pimax 5K Super (x2)
+-- =========================
+
+--  des id_casque après insertion :
+-- 1 = Bigscreen Beyond
+-- 2 = Pimax 5K Super
+-- 3 = Oculus Rift
+-- 4 = PSVR
+-- 5 = Apple Vision Pro
+
+INSERT INTO articles_panier (id_panier, id_casque, quantite, prix_unitaire) VALUES
+-- Panier 1 (id_panier = 1)
+(1, 5, 1, 3499.00),   
+(1, 3, 1, 399.99),    
+
+-- Panier 2 (id_panier = 2)
+(2, 1, 1, 1799.99),   
+(2, 2, 2, 1199.99);   
+
+INSERT INTO commandes (id_utilisateur, id_panier, montant_total) VALUES
+(1, 1, 3898.99),
+(2, 2, 4199.97);
+
+ALTER TABLE casques
+ADD COLUMN image_fichier VARCHAR(255) NULL AFTER description;
+
+UPDATE casques
+SET image_fichier = 'bigscreen-beyond.jpg'
+WHERE id_casque = 1;
+
+UPDATE casques
+SET image_fichier = 'pimax-5k-super.jpg'
+WHERE id_casque = 2;
+
+UPDATE casques
+SET image_fichier = 'oculus-rift.jpg'
+WHERE id_casque = 3;
+
+UPDATE casques
+SET image_fichier = 'psvr.jpg'
+WHERE id_casque = 4;
+
+UPDATE casques
+SET image_fichier = 'apple-vision-pro.jpg'
+WHERE id_casque = 5;
+
