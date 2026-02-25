@@ -1,3 +1,43 @@
+/* =======================================================
+   css/style.css – Feuille de style principale de VortexVR
+
+   Rôle dans le projet :
+     Fichier CSS unique chargé sur toutes les pages via
+     <link rel="stylesheet" href="css/style.css"> dans header.php.
+
+   Organisation par sections (ordre d'apparition) :
+     1.  Reset & base           – réinitialisation des marges, police, couleurs globales
+     2.  Layout global          – .container, .site-main, utilitaires flex
+     3.  En-tête (header)       – .site-header, logo, navigation principale
+     4.  Pied de page (footer)  – .site-footer
+     5.  Responsive global      – breakpoint 768px pour header/nav
+     6.  Accueil (index.php)    – .acc-* (carrousel, top 3, boutons) [William]
+     7.  Création casque        – .crea-* (formulaire en grille CSS) [William]
+     8.  Panier                 – .panier, .produit, .section-* [William]
+     9.  Checkout               – .checkout, .Pannel-*, .product-* [Abdoulaye]
+     10. Wallet                 – .wallet, .wallet-* [Abdoulaye]
+     11. Compte                 – .compte, .compte-* [Abdoulaye]
+     12. Catalogue              – .catalogue, .filter-*, .catalogue-* [Sèdrick]
+     13. Formulaires Register/Login – .form-wrapper, .styled-form, .login, .btn-submit [Alex]
+     14. Utilitaires globaux    – .center, .actions, .message-*, .is-hidden, .traitement
+
+   Palette de couleurs utilisée :
+     - Fond principal    : #020617 (navy très sombre)
+     - Fond carte/nav    : #0f172a
+     - Bordures          : #1e293b
+     - Accent violet     : #6366f1 (indigo)
+     - Accent doré       : #e0b158 / #f4c98d
+     - Texte principal   : #e5e7eb
+     - Texte secondaire  : #9ca3af
+
+   @project VortexVR – Boutique de casques VR
+   ======================================================= */
+
+/* =======================================================
+   SECTION 1 : Reset & styles de base
+   Appliqué à tous les éléments pour garantir un rendu
+   cohérent entre navigateurs (box model, marges nulles).
+   ======================================================= */
 * {
     margin: 0;
     padding: 0;
@@ -17,6 +57,12 @@ body {
     color: #e5e7eb;
 }
 
+/* =======================================================
+   SECTION 2 : Layout global
+   .container  : largeur max 1100px, centré horizontalement.
+   .site-main  : flex column, prend tout l'espace vertical disponible
+                 (sticky header + flexible main + footer collé en bas).
+   ======================================================= */
 .container {
     width: 100%;
     max-width: 1100px;
@@ -46,6 +92,13 @@ body {
 }
 
 
+/* =======================================================
+   SECTION 3 : En-tête du site (.site-header)
+   Sticky en haut (z-index 1000 pour rester au-dessus du contenu).
+   Contient : logo texte, logo image, navigation principale.
+   La nav affiche des liens différents selon l'état de connexion
+   (conditionnel via PHP dans header.php).
+   ======================================================= */
 .site-header {
     background: rgba(15, 23, 42, 0.95);
     border-bottom: 1px solid #1e293b;
@@ -106,6 +159,11 @@ img {
     border-bottom-color: #6366f1;
 }
 
+/* =======================================================
+   SECTION 4 : Pied de page (.site-footer)
+   Toujours collé en bas grâce au flex column sur body
+   (body = column, site-main flex:1 prend l'espace restant).
+   ======================================================= */
 .site-footer {
     background-color: #0f172a;
     border-top: 1px solid #1e293b;
@@ -118,6 +176,10 @@ img {
     font-size: 0.9rem;
 }
 
+/* =======================================================
+   SECTION 5 : Responsive global (breakpoint 768px)
+   Réorganise l'en-tête en colonne sur mobile.
+   ======================================================= */
 @media (max-width: 768px) {
 
     .header-inner {
@@ -144,7 +206,20 @@ img {
 
 }
 
-/*Acceuil ou index.php par WILLIAM*/
+/* =======================================================
+   SECTION 6 : Page d'accueil — index.php
+   Auteur : William
+
+   Composants :
+     - .acc-whole      : conteneur centré max 1100px
+     - .acc-titre      : bandeau de bienvenue
+     - .acc-offre      : bandeau des meilleures offres (fond rouge)
+     - .acc-top3       : conteneur flex des 3 casques vedettes
+     - .acc-produit    : carte individuelle d'un casque (450px haut)
+     - .acc-switch-casque : boutons de navigation du carrousel
+     - .acc-btn-catalogue : bouton doré vers le catalogue
+     - .acc-succes/.acc-err : messages de feedback ajout panier
+   ======================================================= */
 
 .acc-offre {
     text-align: center;
@@ -300,7 +375,14 @@ img {
     margin: 10px;
 }
 
-/*Creation de casque par WILLIAM*/
+/* =======================================================
+   SECTION 7 : Création de casque — creation_casque.php
+   Auteur : William
+
+   Le formulaire utilise CSS Grid à 2 colonnes avec des
+   grid-areas nommées (nom, marque, prix, inv, desc, img, cree).
+   Passe à 1 colonne sous 768px.
+   ======================================================= */
 
 .crea-whole {
     max-width: 1100px;
@@ -418,7 +500,20 @@ img {
 
 }
 
-/*PANIER PAR WILLIAM*/
+/* =======================================================
+   SECTION 8 : Panier — panier.php
+   Auteur : William
+
+   Composants :
+     - .panier             : conteneur page (max 1100px)
+     - .section-Total      : affichage du sous-total en haut
+     - .section-produit    : grille 2 colonnes des articles
+     - .produit            : carte d'article (grid-areas internes)
+     - .produit-qte        : boutons +1 / -1 de quantité
+     - .produit-suppr      : bouton Supprimer
+     - .section-commande   : bouton "Passer à la commande"
+     - #commandePanier     : bouton arrondi or avec effet hover scale
+   ======================================================= */
 .panier {
     max-width: 1100px;
     margin: 0 auto;
@@ -575,9 +670,19 @@ img {
 
 
 
-/* ===========================
-   CHECKOUT – CONTENEUR GLOBAL par Abdoulaye
-   =========================== */
+/* =======================================================
+   SECTION 9 : Checkout — checkout.php
+   Auteur : Abdoulaye
+
+   Composants :
+     - .checkout-container      : max 1100px, centré
+     - .checkout-section        : panneau récapitulatif (montants, taxes)
+     - .Pannel-div              : ligne label / valeur du récapitulatif
+     - .checkout-confirm-button : bouton violet de confirmation
+     - .checkout-products-grid  : grille 3 col des cartes produits
+     - .checkout-product-card   : carte individuelle (image + qty + prix)
+     - .qty-btn                 : boutons +/- (UI décorative, logique en JS)
+   ======================================================= */
 
 .checkout {
     width: 100%;
@@ -727,9 +832,20 @@ img {
     }
 }
 
-/* ===========================
-  Mise en page de la page WALLET par Abdoulaye 
-   =========================== */
+/* =======================================================
+   SECTION 10 : Wallet — wallet.php
+   Auteur : Abdoulaye
+
+   Composants :
+     - .wallet-container    : max 700px, centré (page étroite de paiement)
+     - .wallet-header       : bandeau doré avec le titre
+     - .wallet-box          : carte récapitulative (solde, quantité, total)
+     - .wallet-row          : ligne label / valeur avec séparateur
+     - .wallet-total        : ligne totale (gras, bordure supérieure)
+     - .wallet-btn-primary  : bouton violet "Valider l'achat"
+     - .wallet-btn-secondary: bouton transparent "Retour au checkout"
+     - .wallet-success/.wallet-error : messages de feedback
+   ======================================================= */
 
 .wallet {
     width: 100%;
@@ -853,9 +969,17 @@ img {
 }
 
 
-/* ===========================
-  Mise en page de la page compte par Abdoulaye 
-   =========================== */
+/* =======================================================
+   SECTION 11 : Compte — compte.php
+   Auteur : Abdoulaye
+
+   Composants :
+     - .compte-header  : bandeau doré en-tête de section
+     - .compte-form    : conteneur du formulaire de profil
+     - .compte-group   : groupe label + input en colonne
+     - .compte-btn     : bouton violet de soumission
+     - .compte-error   : message d'erreur de mise à jour
+   ======================================================= */
 
 .compte {
     width: 100%;
@@ -923,8 +1047,21 @@ img {
     color: #e5e7eb;
 }
 
-/*mise en page de catalogue.php
-par Sedrick*/
+/* =======================================================
+   SECTION 12 : Catalogue — catalogue.php
+   Auteur : Sèdrick
+
+   Composants :
+     - .catalogue-container  : max 1100px, centré
+     - .catalogue-filters    : formulaire de filtres en grille 5 colonnes
+     - .filter-group         : groupe label + champ de filtre
+     - .filter-btn           : bouton violet "Filtrer"
+     - .filter-link          : lien "Réinitialiser" style bouton
+     - .catalogue-grid       : grille 3 colonnes des cartes casque
+     - .catalogue-card       : carte casque (image, nom, prix, stock, bouton)
+     - .catalogue-btn        : bouton "Ajouter au panier" (désactivé si stock=0)
+   Responsive : 2 colonnes à 900px, 1 colonne à 600px.
+   ======================================================= */
 
 .catalogue {
     width: 100%;
@@ -1154,7 +1291,22 @@ par Sedrick*/
     }
 }
 
-/* CSS Alex */
+/* =======================================================
+   SECTION 13 : Formulaires login & inscription
+   Auteur : Alex
+
+   Composants :
+     - .form-container   : conteneur flex centré (min 100vh)
+     - .form-wrapper     : carte de formulaire avec fond semi-transparent
+     - .styled-form      : formulaire en colonne avec gaps
+     - .form-row         : ligne label (40%) + input (55%)
+     - .btn-submit       : bouton doré de soumission
+     - .login-section    : conteneur centré pour le formulaire de connexion
+     - .login            : carte formulaire de connexion (max 400px)
+     - .rectangle-button : bouton doré de connexion pleine largeur
+     - .login-error      : message d'erreur rouge (affiché depuis la session)
+     - .login-box        : bloc "Vous avez déjà un compte ?" dans register.php
+   ======================================================= */
 .form-wrapper {
     background: #1e3a8a33;
     padding: 2rem;
@@ -1333,9 +1485,18 @@ par Sedrick*/
     align-items: center;
 }
 
-/*Fin CSS Alex*/
+/* ======================================================= Fin CSS Alex ======================================================= */
 
-/* Utilitaire */
+/* =======================================================
+   SECTION 14 : Utilitaires globaux
+   Classes réutilisables sur toutes les pages :
+     - .center          : centrage de texte
+     - .actions         : espace autour des boutons d'action
+     - .message-success : texte vert clair (confirmation)
+     - .message-error   : texte rouge clair (erreur)
+     - .is-hidden       : display:none (masqué via JS sur compte.php)
+     - .traitement      : liste de récapitulatif de l'inscription
+   ======================================================= */
 .center {
     text-align: center;
 }

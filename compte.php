@@ -1,35 +1,72 @@
 <?php
+/**
+ * compte.php
+ *
+ * Page de gestion du profil utilisateur de la boutique VortexVR.
+ *
+ * Fonctionnement :
+ *   1. Vérifie que l'utilisateur est connecté (via $_SESSION['courriel']).
+ *      Si non connecté : message d'erreur + pied de page + exit.
+ *   2. Charge les données du client depuis la BDD via ClientManager::showClientByCourriel().
+ *   3. Affiche un formulaire CAPTCHA (validation côté JS dans script.js).
+ *   4. Affiche les champs du profil dans #protectedContent (masqué par défaut).
+ *      Le contenu est révélé par JS une fois le CAPTCHA validé.
+ *   5. Chaque champ dispose d'un mini-formulaire POST indépendant vers updateClient.php
+ *      qui met à jour un seul champ à la fois en BDD.
+ *
+ * @project VortexVR – Boutique de casques VR
+ */
+
 declare(strict_types=1);
 
+// Chargement de l'en-tête HTML commun (session, autoloader, CSS, nav).
 require_once "inc/header.php";
 require_once "classe/clientManager.php";
 require_once "classe/client.php";
 
-
+// --- Vérification de l'authentification ---
+// Si le courriel n'est pas en session, l'utilisateur n'est pas connecté.
 $courriel = $_SESSION['courriel'] ?? '';
 if ($courriel === '') {
     echo "<p class='center message-error'>Aucun client connecté.</p>";
     require_once "inc/footer.php";
-    exit;
+    exit; // Arrêt immédiat : inutile d'afficher le formulaire.
 }
 
+// Chargement des données du client depuis la base de données.
 $clientManager = new ClientManager();
-$client = $clientManager->showClientByCourriel($courriel);
+$client        = $clientManager->showClientByCourriel($courriel);
 
-
-function h($v): string {
+/**
+ * Raccourci d'échappement HTML pour l'affichage des valeurs du client.
+ *
+ * Utilise htmlspecialchars() pour prévenir les injections XSS et (string) cast
+ * pour éviter les erreurs si la valeur est null.
+ *
+ * @param mixed $v Valeur à afficher.
+ * @return string Valeur sécurisée pour l'affichage HTML.
+ */
+function h($v): string
+{
     return htmlspecialchars((string)($v ?? ''));
 }
 ?>
 
 <section class="form-container">
-    
+
+    <!-- =====================================================
+         SECTION CAPTCHA
+         Le formulaire est soumis via JS (checkform).
+         Si le CAPTCHA est correct, #protectedContent devient visible.
+         ===================================================== -->
     <form onsubmit="return checkform(this);" class="formmargin">
         <div class="capbox">
+            <!-- Zone de génération du CAPTCHA (remplie par script.js) -->
             <div id="CaptchaDiv"></div>
 
             <div class="capbox-inner">
                 Type the number:<br>
+                <!-- txtCaptcha (hidden) contient la valeur correcte générée par JS -->
                 <input type="hidden" id="txtCaptcha">
                 <input type="text" name="CaptchaInput" id="CaptchaInput" size="15">
             </div>
@@ -41,10 +78,19 @@ function h($v): string {
 
     <hr>
 
-    
+    <!-- =====================================================
+         SECTION PROTÉGÉE (masquée via .is-hidden)
+         Révélée par JS uniquement après validation du CAPTCHA.
+         ===================================================== -->
     <div id="protectedContent" class="is-hidden">
         <h2 class="center">Modifier les informations du compte</h2>
 
+        <!-- Chaque bloc ci-dessous affiche la valeur actuelle du champ
+             et propose un mini-formulaire pour la modifier.
+             Le champ caché "champ" indique à updateClient.php
+             quelle colonne mettre à jour en BDD. -->
+
+        <!-- Nom de famille -->
         <p><strong>Nom :</strong> <?= h($client['nom'] ?? '') ?></p>
         <form method="post" action="updateClient.php" class="styled-form">
             <div class="form-row">
@@ -54,6 +100,7 @@ function h($v): string {
             </div>
         </form>
 
+        <!-- Prénom -->
         <p><strong>Prénom :</strong> <?= h($client['prenom'] ?? '') ?></p>
         <form method="post" action="updateClient.php" class="styled-form">
             <div class="form-row">
@@ -63,6 +110,7 @@ function h($v): string {
             </div>
         </form>
 
+        <!-- Nom d'utilisateur (pseudonyme) -->
         <p><strong>Nom d'utilisateur :</strong> <?= h($client['nom_utilisateur'] ?? '') ?></p>
         <form method="post" action="updateClient.php" class="styled-form">
             <div class="form-row">
@@ -72,6 +120,7 @@ function h($v): string {
             </div>
         </form>
 
+        <!-- Courriel -->
         <p><strong>Email :</strong> <?= h($client['courriel'] ?? '') ?></p>
         <form method="post" action="updateClient.php" class="styled-form">
             <div class="form-row">
@@ -81,6 +130,7 @@ function h($v): string {
             </div>
         </form>
 
+        <!-- Pays -->
         <p><strong>Pays :</strong> <?= h($client['pays'] ?? '') ?></p>
         <form method="post" action="updateClient.php" class="styled-form">
             <div class="form-row">
@@ -90,6 +140,7 @@ function h($v): string {
             </div>
         </form>
 
+        <!-- Adresse postale -->
         <p><strong>Adresse :</strong> <?= h($client['adresse'] ?? '') ?></p>
         <form method="post" action="updateClient.php" class="styled-form">
             <div class="form-row">
@@ -99,6 +150,7 @@ function h($v): string {
             </div>
         </form>
 
+        <!-- Ville -->
         <p><strong>Ville :</strong> <?= h($client['ville'] ?? '') ?></p>
         <form method="post" action="updateClient.php" class="styled-form">
             <div class="form-row">
@@ -108,6 +160,7 @@ function h($v): string {
             </div>
         </form>
 
+        <!-- Téléphone (format 000-000-0000 imposé par pattern HTML5) -->
         <p><strong>Téléphone :</strong> <?= h($client['telephone'] ?? '') ?></p>
         <form method="post" action="updateClient.php" class="styled-form">
             <div class="form-row">
@@ -117,6 +170,7 @@ function h($v): string {
             </div>
         </form>
 
+        <!-- Solde du wallet (min 0$, pas de 0.01$) -->
         <p><strong>Argent :</strong> <?= h($client['argent'] ?? '') ?> $</p>
         <form method="post" action="updateClient.php" class="styled-form">
             <div class="form-row">
@@ -128,4 +182,7 @@ function h($v): string {
     </div>
 </section>
 
-<?php require_once "inc/footer.php"; ?>
+<?php
+// Fermeture du <main>, affichage du pied de page HTML.
+require_once "inc/footer.php";
+?>
